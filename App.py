@@ -8,8 +8,8 @@ from tensorflow.keras.models import load_model
 # Load preprocessed data
 train_df = pd.read_csv('https://raw.githubusercontent.com/amansharma-tech/PECF/main/train_df.csv')
 df1 = pd.read_csv('https://raw.githubusercontent.com/amansharma-tech/PECF/main/df1.csv')
-X_test = np.load('https://github.com/amansharma-tech/PECF/raw/main/X_test.npy')
-y_test = np.load('https://github.com/amansharma-tech/PECF/raw/main/y_test.npy')
+X_test = np.load('https://github.com/amansharma-tech/PECF/main/X_test.npy')
+y_test = np.load('https://github.com/amansharma-tech/PECF/main/y_test.npy')
 
 # Load trained linear model
 linear_model = load_model('https://github.com/amansharma-tech/PECF/raw/blob/main/linear_model.h5')

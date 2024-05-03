@@ -1,0 +1,5 @@
+pip
+streamlit
+tensorflow
+numpy
+pandas

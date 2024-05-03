@@ -4,18 +4,28 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 from tensorflow.keras.models import load_model
+import requests
 
 # Load preprocessed data
 train_df = pd.read_csv('https://raw.githubusercontent.com/amansharma-tech/PECF/main/train_df.csv')
 df1 = pd.read_csv('https://raw.githubusercontent.com/amansharma-tech/PECF/main/df1.csv')
-X_test = np.load('https://github.com/amansharma-tech/raw/PECF/main/X_test.npy')
-y_test = np.load('https://github.com/amansharma-tech/raw/PECF/main/y_test.npy')
 
 # Load trained linear model
-linear_model = load_model('https://github.com/amansharma-tech/PECF/raw/blob/main/linear_model.h5')
+linear_model = load_model('https://github.com/amansharma-tech/PECF/raw/main/linear_model.h5')
 
 # Load test results
-results = pd.read_csv('https://raw.githubusercontent.com/amansharma-tech/PECF/blob/main/test_results.csv')
+results = pd.read_csv('https://raw.githubusercontent.com/amansharma-tech/PECF/main/test_results.csv')
+
+# Download X_test.npy file from GitHub repository
+url = 'https://github.com/amansharma-tech/PECF/raw/main/X_test.npy'
+response = requests.get(url)
+
+# Save X_test.npy locally
+with open('X_test.npy', 'wb') as f:
+    f.write(response.content)
+
+# Load X_test.npy
+X_test = np.load('X_test.npy')
 
 # Calculate evaluation metrics
 mse = mean_squared_error(results['y_test_actual'].tail(48), results['linear_model_pred'].tail(48))
